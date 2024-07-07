@@ -56,12 +56,21 @@ afterEvaluate {
         }
 
         repositories {
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/${System.getenv("GITHUB_REPOSITORY")}")
-                credentials {
-                    username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                    password = project.findProperty("gpr.token") ?: System.getenv("TOKEN")
+            // Local Maven repository
+            if (project.hasProperty('local') && project.property('local') == 'true') {
+                maven {
+                    name = "LocalRepo"
+                    url = uri("${buildDir}/maven-repo")
+                }
+            } else {
+                // Remote Maven repository (GitHub Packages)
+                maven {
+                    name = "GitHubPackages"
+                    url = uri("https://maven.pkg.github.com/${System.getenv("GITHUB_REPOSITORY")}")
+                    credentials {
+                        username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                        password = project.findProperty("gpr.token") ?: System.getenv("TOKEN")
+                    }
                 }
             }
         }
