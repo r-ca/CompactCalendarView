@@ -45,9 +45,8 @@ jobs:
       run: ./gradlew :library:publish -Plocal=true
 
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-pages-artifact@v1
       with:
-        name: github-pages
         path: library/build/maven-repo/
 
   deploy-to-pages:
