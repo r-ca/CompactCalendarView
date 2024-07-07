@@ -45,9 +45,9 @@ jobs:
       run: ./gradlew :library:publish -Plocal=true
 
     - name: Upload build artifacts
-      uses: actions/upload-pages-artifact@v1
+      uses: actions/upload-pages-artifact@v3
       with:
-        path: library/build/maven-repo/
+        path: library/build/maven-repo
 
   deploy-to-pages:
     needs: build
