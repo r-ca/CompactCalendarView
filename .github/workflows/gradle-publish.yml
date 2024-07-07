@@ -41,13 +41,16 @@ jobs:
         TOKEN: ${{ secrets.GITHUB_TOKEN }}
         GITHUB_REPOSITORY: ${{ github.repository }}
 
+    - name: Publish to Local (for Pages)
+      run: ./gradlew :library:publish -Plocal=true
+
     - name: Upload build artifacts
       uses: actions/upload-artifact@v4
       with:
         name: Package
-        path: build/libs
+        path: library/build/maven-repo
 
-  deploy:
+  deploy-to-pages:
     needs: build
     permissions:
       id-token: write
