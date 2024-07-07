@@ -52,9 +52,6 @@ afterEvaluate {
                 groupId = 'one.nem'
                 artifactId = 'compact-calendar-view'
                 version = '1.0.0'
-
-                // AAR artifact
-                artifact("$buildDir/outputs/aar/library-release.aar")
             }
         }
 
