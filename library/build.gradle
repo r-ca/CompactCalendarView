@@ -43,26 +43,29 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:2.15.0'
 }
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from components.release
-            groupId = 'one.nem'
-            artifactId = 'compact-calendar-view'
-            version = '1.0.0'
+afterEvaluate {
+    println("Components: " + components*.name) // DEBUG
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                from components.release
+                groupId = 'one.nem'
+                artifactId = 'compact-calendar-view'
+                version = '1.0.0'
 
-            // AAR artifact
-            artifact("$buildDir/outputs/aar/library-release.aar")
+                // AAR artifact
+                artifact("$buildDir/outputs/aar/library-release.aar")
+            }
         }
-    }
 
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/${System.getenv("GITHUB_REPOSITORY")}")
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.token") ?: System.getenv("TOKEN")
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/${System.getenv("GITHUB_REPOSITORY")}")
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                    password = project.findProperty("gpr.token") ?: System.getenv("TOKEN")
+                }
             }
         }
     }
