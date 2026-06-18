@@ -1,6 +1,6 @@
 # CompactCalendarView for AndroidX
 ## 概要
-- CompacrCalendarViewのAndroidX環境対応版
+- CompactCalendarViewのAndroidX環境対応版
   - 本家に提出されていた[AndroidXにMigrateするPR](https://github.com/SundeepK/CompactCalendarView/pull/356)を取り込むことでAndroidX環境で使用しても正常にビルドできるように
 - Mavenリポジトリとして追加するだけで使用可能
 
